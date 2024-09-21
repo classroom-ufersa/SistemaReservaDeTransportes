@@ -44,4 +44,7 @@ Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* m
 // função para adicionar uma nova reserva
 void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos);
 
+//função para remover uma reserva existente
+void excluirReserva(ListaReserva* lista, const char* nomeSolicitante);
+
 #endif

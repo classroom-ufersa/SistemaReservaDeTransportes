@@ -71,3 +71,39 @@ void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos) {
 
     printf("Reserva adicionada com sucesso!\n");
 }
+
+void excluirReserva(ListaReserva* lista, const char* nomeSolicitante) {
+    Reserva *atual = lista->inicio;
+    Reserva *anterior = NULL;
+
+    // laço para percorrer a lista para encontrar a reserva desejada
+    while (atual != NULL) {
+        if (strcmp(atual->nomeSolicitante, nomeSolicitante) == 0) {
+            // verifica se a reserva foi encontrada
+
+            // verifica se foi o primeiro nó (cabeça da lista)
+            if (anterior == NULL) {
+                lista->inicio = atual->prox;
+            } else {
+                anterior->prox = atual->prox;
+            }
+
+            // atualizar o veiculo associdado como disponivel agora
+            if (atual->veiculoAssociado != NULL) {
+                atual->veiculoAssociado->disponibilidade = 1;
+            }
+
+            // liberar a memória que foi alocada para a reserva
+            free(atual);
+
+            printf("a Reserva excluida com sucesso!\n");
+            return;
+        }
+
+        // avança para o próximo nó
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    printf("a Reserva nao encontrada!\n");
+}
