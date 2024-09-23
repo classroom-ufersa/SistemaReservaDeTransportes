@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "reserva.h"
-#include "verificacao.c"
+#include "../includes/reserva.h"
+#include "../includes/verificacao.h"
 
 void inicializaListaReserva(ListaReserva* lista) {
     lista->inicio = NULL;
