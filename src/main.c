@@ -9,6 +9,7 @@ int main(void)
     int opcaoint;
     do
     {
+        printf("\n|Bem Vindo ao Nosso Sistema de Reserva de Transportes!|\n");
         printf("1.Adicionar Reserva\n");
         printf("2.Excluir Reserva\n");
         printf("3.Listar Reserva\n");
