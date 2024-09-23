@@ -47,4 +47,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos);
 //função para remover uma reserva existente
 void excluirReserva(ListaReserva* lista, const char* nomeSolicitante);
 
+// função para listar todas as reservas
+void listarReservas(ListaReserva* lista);
+
 #endif

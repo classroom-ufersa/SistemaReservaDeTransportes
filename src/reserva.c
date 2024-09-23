@@ -110,3 +110,43 @@ void excluirReserva(ListaReserva* lista, const char* nomeSolicitante) {
 
     printf("a Reserva nao encontrada!\n");
 }
+
+// converter o tipo de veículo escolhido para string
+const char* tipoVeiculoParaString(TipoVeiculo tipo) {
+    switch (tipo) {
+        case ONIBUS: return "Ônibus";
+        case VAN: return "Van";
+        case PICKUP: return "Pickup";
+        case CARRO_CONVENCIONAL: return "Carro Convencional";
+        default: return "Desconhecido";
+    }
+}
+
+void listarReservas(ListaReserva* lista) {
+    Reserva* atual = lista->inicio;
+
+    if (atual == NULL) {
+        printf("Não há reservas cadastradas.\n");
+        return;
+    }
+
+    printf("~~~~~ Lista de Reservas ~~~~~~\n");
+    while (atual != NULL) {
+        printf("Nome do solicitante: %s\n", atual->nomeSolicitante);
+        printf("Data da reserva: %s\n", atual->data);
+        printf("Horario de inicio: %s\n", atual->horarioInicio);
+        printf("Horario de termino: %s\n", atual->horarioTermino);
+        printf("Destino: %s\n", atual->destino);
+        
+        if (atual->veiculoAssociado != NULL) {
+            printf("Veículo associado: %s (Código: %d)\n", 
+                tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
+                atual->veiculoAssociado->codigo);
+        } else {
+            printf("Nenhum veiculo associado.\n");
+        }
+
+        printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        atual = atual->prox;
+    }
+}
