@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "reserva.h"
+#include "verificacao.c"
 
 void inicializaListaReserva(ListaReserva* lista) {
     lista->inicio = NULL;
@@ -24,7 +25,9 @@ void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos) {
 
             printf("Nome do Cliente: ");
              scanf(" %[^\n]", nomeSolicitante);
-    
+             if(!VerificarSeSoTemLetras(nomeSolicitante)){
+                printf("Nome invalido.Digite novamente!");
+             }
             printf("Data (dd/mm/aaaa): ");
             scanf(" %[^\n]", data);
     
