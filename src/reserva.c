@@ -4,6 +4,29 @@
 #include "../includes/reserva.h"
 #include "../includes/verificacao.h"
 
+struct Veiculo {
+    int codigo;
+    TipoVeiculo tipo;
+    int disponibilidade; // se = 1 veiculo disponível ,se = 0 veiculos indisponível
+    int capacidade;
+    char motorista[50];
+    struct Veiculo* prox;
+};
+
+struct Reserva {
+    char nomeSolicitante[50];
+    char data[20];
+    char horarioInicio[10];
+    char horarioTermino[10];
+    char destino[100];
+    Veiculo* veiculoAssociado;
+    struct Reserva* prox;
+};
+
+struct ListaReserva{
+    Reserva* inicio;
+};
+
 void inicializaListaReserva(ListaReserva* lista) {
     lista->inicio = NULL;
 }

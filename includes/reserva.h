@@ -10,31 +10,14 @@ typedef enum {
 } TipoVeiculo;
 
 // struct para os tipos de veiculos
-typedef struct Veiculo {
-    int codigo;
-    TipoVeiculo tipo;
-    int disponibilidade; // se = 1 veiculo disponível ,se = 0 veiculos indisponível
-    int capacidade;
-    char motorista[50];
-    struct Veiculo* prox;
-} Veiculo;
+typedef struct Veiculo Veiculo;
 
 // stuct para a reserva do veiculo
-typedef struct Reserva {
-    char nomeSolicitante[50];
-    char data[20];
-    char horarioInicio[10];
-    char horarioTermino[10];
-    char destino[100];
-    Veiculo* veiculoAssociado;
-    struct Reserva* prox;
-} Reserva;
+typedef struct Reserva Reserva;
 
 // lista ecadeada para as reservas
-typedef struct {
-    Reserva* inicio;
-} ListaReserva;
-
+typedef struct ListaReserva ListaReserva;
+ 
 // função para inicializar a lista de reservas
 void inicializaListaReserva(ListaReserva* lista);
 
