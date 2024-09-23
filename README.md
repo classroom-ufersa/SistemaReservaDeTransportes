@@ -45,7 +45,7 @@
   Clone o repositorio na sua maquina:
 
   ```bash
-  git clone https://github.com/classroom-ufersa/GerenciamentoDeClinicaGeral.git
+  git clone https://github.com/classroom-ufersa/SistemaDeReservaDeTransportes.git
   ```
 
   Para executar, certifique-se de que você possui um compilador C instalado na sua máquina, então navegue até onde o projeto está localizado. Você pode fazer isso usando o comando cd.
