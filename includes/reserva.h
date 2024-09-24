@@ -50,4 +50,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeSolicitante);
 // função para listar todas as reservas
 void listarReservas(ListaReserva* lista);
 
+// função para buscar uma reserva por nome do cliente
+void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeSolicitante);
+
 #endif

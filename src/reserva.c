@@ -150,3 +150,31 @@ void listarReservas(ListaReserva* lista) {
         atual = atual->prox;
     }
 }
+
+void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeSolicitante) {
+    Reserva* atual = lista->inicio;
+
+    while (atual != NULL) {
+        if (strcmp(atual->nomeSolicitante, nomeSolicitante) == 0) {
+            printf("Reserva encontrada:\n");
+            printf("Nome do solicitante: %s\n", atual->nomeSolicitante);
+            printf("Data da reserva: %s\n", atual->data);
+            printf("Horario de inicio: %s\n", atual->horarioInicio);
+            printf("Horario de termino: %s\n", atual->horarioTermino);
+            printf("Destino: %s\n", atual->destino);
+            
+            if (atual->veiculoAssociado != NULL) {
+                printf("Veículo associado: %s (Código: %d)\n", 
+                    tipoVeiculoToString(atual->veiculoAssociado->tipo), 
+                    atual->veiculoAssociado->codigo);
+            } else {
+                printf("Nenhum veiculo associado.\n");
+            }
+
+            return;
+        }
+        atual = atual->prox;
+    }
+
+    printf("a Reserva nao foi encontrada para o solicitante: %s\n", nomeSolicitante);
+}
