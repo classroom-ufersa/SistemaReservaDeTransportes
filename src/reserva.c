@@ -157,7 +157,7 @@ void listarReservas(ListaReserva* lista) {
 
     printf("~~~~~ Lista de Reservas ~~~~~~\n");
     while (atual != NULL) {
-        printf("Nome do solicitante: %s\n", atual->nomeCliente);
+        printf("Nome do Cliente: %s\n", atual->nomeCliente);
         printf("Data da reserva: %s\n", atual->data);
         printf("Horario de inicio: %s\n", atual->horarioInicio);
         printf("Horario de termino: %s\n", atual->horarioTermino);
@@ -182,7 +182,7 @@ void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeCliente) {
     while (atual != NULL) {
         if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
             printf("Reserva encontrada:\n");
-            printf("Nome do solicitante: %s\n", atual->nomeCliente);
+            printf("Nome do Cliente: %s\n", atual->nomeCliente);
             printf("Data da reserva: %s\n", atual->data);
             printf("Horario de inicio: %s\n", atual->horarioInicio);
             printf("Horario de termino: %s\n", atual->horarioTermino);
