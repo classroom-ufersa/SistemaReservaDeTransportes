@@ -201,3 +201,80 @@ void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeCliente) {
 
     printf("a Reserva nao foi encontrada para o solicitante: %s\n", nomeCliente);
 }
+
+void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nomeCliente) {
+    Reserva* atual = lista->inicio;
+
+    while (atual != NULL) {
+        if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
+            int opcao;
+            printf("a Reserva foi encontrada, o que vai editar?\n");
+            printf("1. Nome do Cliente\n");
+            printf("2. Data\n");
+            printf("3. Horário de inicio\n");
+            printf("4. Horário de termino\n");
+            printf("5. Destino\n");
+            printf("6. Veiculo associado\n");
+            printf("Digite sua opcao: ");
+            scanf("%d", &opcao);
+
+            switch (opcao) {
+                case 1:
+                    printf("Novo nome do Cliente: ");
+                    scanf(" %[^\n]", atual->nomeCliente);
+                    break;
+                case 2:
+                    printf("Nova data (dd/mm/aaaa): ");
+                    scanf(" %[^\n]", atual->data);
+                    break;
+                case 3:
+                    printf("Novo horario de inicio (hh:mm): ");
+                    scanf(" %[^\n]", atual->horarioInicio);
+                    break;
+                case 4:
+                    printf("Novo horario de termino (hh:mm): ");
+                    scanf(" %[^\n]", atual->horarioTermino);
+                    break;
+                case 5:
+                    printf("Novo destino: ");
+                    scanf(" %[^\n]", atual->destino);
+                    break;
+                case 6: {
+                    int codigoVeiculo;
+                    printf("Codigo do novo veiculo: ");
+                    scanf("%d", &codigoVeiculo);
+                    Veiculo* novoVeiculo = NULL;
+                    Veiculo* veiculoAtual = listaVeiculos;
+                    while (veiculoAtual != NULL) {
+                        if (veiculoAtual->codigo == codigoVeiculo && veiculoAtual->disponibilidade == 1) {
+                            novoVeiculo = veiculoAtual;
+                            break;
+                        }
+                        veiculoAtual = veiculoAtual->prox;
+                    }
+
+                    if (novoVeiculo != NULL) {
+                        if (atual->veiculoAssociado != NULL) {
+                            atual->veiculoAssociado->disponibilidade = 1;
+                        }
+                        atual->veiculoAssociado = novoVeiculo;
+                        novoVeiculo->disponibilidade = 0;
+                        printf("Veiculo atualizado com sucesso.\n");
+                    } else {
+                        printf("o Veiculo nao esta disponivel.\n");
+                    }
+                    break;
+                }
+                default:
+                    printf("Opcao invalida!\n");
+            }
+
+            printf("os Dados da reserva foram atualizados!\n");
+            return;
+        }
+
+        atual = atual->prox;
+    }
+
+    printf("a Reserva nao foi encontrada para o cliente: %s\n", nomeCliente);
+}
