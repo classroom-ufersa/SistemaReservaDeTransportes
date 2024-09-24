@@ -13,9 +13,9 @@ int main(void)
         printf("1.Adicionar Reserva\n");
         printf("2.Excluir Reserva\n");
         printf("3.Listar Reserva\n");
-        printf("4.Buscar Reserva Por Solicitante\n");
+        printf("4.Buscar Reserva Por Cliente\n");
         printf("5.Editar Dados Da Reserva\n");
-        printf("6.Consultar Veículos Disponíveis\n");
+        printf("6.Consultar Veiculos Disponiveis\n");
         printf("7.Consultar Quantitativo De Reserva\n");
         printf("8.Sair\n");
         scanf("%s", opcao);
