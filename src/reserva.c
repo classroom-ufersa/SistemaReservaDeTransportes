@@ -25,6 +25,8 @@ struct Reserva {
 
 struct ListaReserva{
     Reserva* inicio;
+    struct listareserva * ant;
+    struct listareserva * prox;
 };
 
 void inicializaListaReserva(ListaReserva* lista) {
