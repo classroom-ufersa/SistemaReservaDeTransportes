@@ -188,7 +188,7 @@ void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeCliente) {
             
             if (atual->veiculoAssociado != NULL) {
                 printf("Veículo associado: %s (Código: %d)\n", 
-                    tipoVeiculoToString(atual->veiculoAssociado->tipo), 
+                    tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
                     atual->veiculoAssociado->codigo);
             } else {
                 printf("Nenhum veiculo associado.\n");
