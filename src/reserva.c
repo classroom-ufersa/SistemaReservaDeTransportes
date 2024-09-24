@@ -14,7 +14,7 @@ struct Veiculo {
 };
 
 struct Reserva {
-    char nomeSolicitante[50];
+    char nomeCliente[50];
     char data[20];
     char horarioInicio[10];
     char horarioTermino[10];
@@ -43,12 +43,12 @@ Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* m
 }
 
 void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos) {
-    char nomeSolicitante[50], data[20], horarioInicio[10], horarioTermino[10], destino[100];
+    char nomeCliente[50], data[20], horarioInicio[10], horarioTermino[10], destino[100];
         int codigoVeiculo;
 
             printf("Nome do Cliente: ");
-             scanf(" %[^\n]", nomeSolicitante);
-             if(!VerificarSeSoTemLetras(nomeSolicitante)){
+             scanf(" %[^\n]", nomeCliente);
+             if(!VerificarSeSoTemLetras(nomeCliente)){
                 printf("Nome invalido.Digite novamente!");
              }
             printf("Data (dd/mm/aaaa): ");
@@ -83,7 +83,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos) {
     }
 
     Reserva* novaReserva = (Reserva*) malloc(sizeof(Reserva));
-    strcpy(novaReserva->nomeSolicitante, nomeSolicitante);
+    strcpy(novaReserva->nomeCliente, nomeCliente);
     strcpy(novaReserva->data, data);
     strcpy(novaReserva->horarioInicio, horarioInicio);
     strcpy(novaReserva->horarioTermino, horarioTermino);
@@ -98,13 +98,13 @@ void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos) {
     printf("Reserva adicionada com sucesso!\n");
 }
 
-void excluirReserva(ListaReserva* lista, const char* nomeSolicitante) {
+void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     Reserva *atual = lista->inicio;
     Reserva *anterior = NULL;
 
     // laço para percorrer a lista para encontrar a reserva desejada
     while (atual != NULL) {
-        if (strcmp(atual->nomeSolicitante, nomeSolicitante) == 0) {
+        if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
             // verifica se a reserva foi encontrada
 
             // verifica se foi o primeiro nó (cabeça da lista)
@@ -155,7 +155,7 @@ void listarReservas(ListaReserva* lista) {
 
     printf("~~~~~ Lista de Reservas ~~~~~~\n");
     while (atual != NULL) {
-        printf("Nome do solicitante: %s\n", atual->nomeSolicitante);
+        printf("Nome do solicitante: %s\n", atual->nomeCliente);
         printf("Data da reserva: %s\n", atual->data);
         printf("Horario de inicio: %s\n", atual->horarioInicio);
         printf("Horario de termino: %s\n", atual->horarioTermino);
@@ -174,13 +174,13 @@ void listarReservas(ListaReserva* lista) {
     }
 }
 
-void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeSolicitante) {
+void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeCliente) {
     Reserva* atual = lista->inicio;
 
     while (atual != NULL) {
-        if (strcmp(atual->nomeSolicitante, nomeSolicitante) == 0) {
+        if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
             printf("Reserva encontrada:\n");
-            printf("Nome do solicitante: %s\n", atual->nomeSolicitante);
+            printf("Nome do solicitante: %s\n", atual->nomeCliente);
             printf("Data da reserva: %s\n", atual->data);
             printf("Horario de inicio: %s\n", atual->horarioInicio);
             printf("Horario de termino: %s\n", atual->horarioTermino);
@@ -199,5 +199,5 @@ void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeSolicitant
         atual = atual->prox;
     }
 
-    printf("a Reserva nao foi encontrada para o solicitante: %s\n", nomeSolicitante);
+    printf("a Reserva nao foi encontrada para o solicitante: %s\n", nomeCliente);
 }
