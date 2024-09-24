@@ -28,12 +28,12 @@ Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* m
 void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos);
 
 //função para remover uma reserva existente
-void excluirReserva(ListaReserva* lista, const char* nomeSolicitante);
+void excluirReserva(ListaReserva* lista, const char* nomeCliente);
 
 // função para listar todas as reservas
 void listarReservas(ListaReserva* lista);
 
 // função para buscar uma reserva por nome do cliente
-void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeSolicitante);
+void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente);
 
 #endif
