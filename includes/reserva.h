@@ -42,4 +42,7 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
 // função para consultar os veículos que estão disponíveis
 void consultarVeiculosDisponiveis(Veiculo* listaVeiculos);
 
+// função para consultar o quantitativo de reservas
+void consultarQuantitativoReservas(ListaReserva* lista);
+
 #endif

@@ -298,3 +298,38 @@ void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
 
     printf("Nao ha mais veiculos disponiveis.\n");
 }
+
+void consultarQuantitativoReservas(ListaReserva* lista) {
+    int totalReservas = 0;
+    int onibus = 0, van = 0, pickup = 0, carroConvencional = 0;
+    Reserva* atual = lista->inicio;
+
+    while (atual != NULL) {
+        totalReservas++;
+
+        if (atual->veiculoAssociado != NULL) {
+            switch (atual->veiculoAssociado->tipo) {
+                case ONIBUS: onibus++; 
+                break;
+
+                case VAN: van++; 
+                break;
+
+                case PICKUP: pickup++; 
+                break;
+
+                case CARRO_CONVENCIONAL: carroConvencional++; 
+                break;
+            }
+        }
+
+        atual = atual->prox;
+    }
+    printf("~~~~ Quantitativo de Reservas ~~~~\n");
+    printf("Total de reservas: %d\n", totalReservas);
+    printf("Ônibus: %d\n", onibus);
+    printf("Van: %d\n", van);
+    printf("Pickup: %d\n", pickup);
+    printf("Carro Convencional: %d\n", carroConvencional);
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+}
