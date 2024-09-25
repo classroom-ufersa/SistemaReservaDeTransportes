@@ -25,8 +25,6 @@ struct Reserva {
 
 struct ListaReserva{
     Reserva* inicio;
-    struct listareserva * ant;
-    struct listareserva * prox;
 };
 
 void inicializaListaReserva(ListaReserva* lista) {
@@ -70,13 +68,13 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
 
     // verifica se o veiculos está disponivel para a reserva
     Veiculo* veiculoEscolhido = NULL;
-    Veiculo* atual = listaVeiculos;
+    Veiculo** atual = listaVeiculos;
         while (atual != NULL) {
-             if (atual->codigo == codigoVeiculo && atual->disponibilidade == 1) {
-            veiculoEscolhido = atual;
+             if ((*atual)->codigo == codigoVeiculo && (*atual)->disponibilidade == 1) {
+            veiculoEscolhido = *atual;
             break;
         }
-        atual = atual->prox;
+        atual = &((*atual)->prox);
     }
 
     if (veiculoEscolhido == NULL) {
@@ -176,7 +174,7 @@ void listarReservas(ListaReserva* lista) {
     }
 }
 
-void buscarReservaPorSolicitante(ListaReserva* lista, const char* nomeCliente) {
+void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
     Reserva* atual = lista->inicio;
 
     while (atual != NULL) {

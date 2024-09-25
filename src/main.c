@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../includes/reserva.h"
-#include "../src/reserva.c"
 #include "../includes/verificacao.h"
 
 int main(void){
-    ListaReserva reserva;
+    ListaReserva *reserva = (ListaReserva*) malloc(sizeof(ListaReserva*));
     Veiculo * veiculo =  NULL;
-    inicializaListaReserva(&reserva); 
+    inicializaListaReserva(reserva); 
     
     char opcao[10];
 
@@ -36,7 +35,7 @@ int main(void){
         switch (opcaoint)
         {
         case 1:
-            adicionarReserva(&reserva, veiculo);
+            adicionarReserva(reserva, &veiculo);
             break;
 
         case 2:
@@ -44,12 +43,12 @@ int main(void){
             char nomeCliente[50];
             printf("Digite o nome do solicitante da reserva que deseja excluir: ");
             scanf(" %[^\n]", nomeCliente);
-            excluirReserva(&reserva, nomeCliente);
+            excluirReserva(reserva, nomeCliente);
             break;
         }
 
         case 3:
-            listarReservas(&reserva);
+            listarReservas(reserva);
             break;
 
         case 4:
@@ -57,7 +56,7 @@ int main(void){
             char nomeCliente[50];
             printf("Digite o nome do cliente para buscar a reserva: ");
             scanf(" %[^\n]", nomeCliente);
-            buscarReservaPorSolicitante(&reserva, nomeCliente);
+            buscarReservaPorCliente(reserva, nomeCliente);
             break;
         }
 
@@ -66,7 +65,7 @@ int main(void){
             char nomeCliente[50];
             printf("Digite o nome do cliente da reserva que deseja editar: ");
             scanf(" %[^\n]", nomeCliente);
-            editarReserva(&reserva, veiculo, nomeCliente);
+            editarReserva(reserva, veiculo, nomeCliente);
             break;
         }
 
@@ -75,11 +74,11 @@ int main(void){
             break;
 
         case 7:
-            consultarQuantitativoReservas(&reserva);
+            consultarQuantitativoReservas(reserva);
             break;
 
         case 8:
-            sair(&reserva, veiculo);
+            sair(reserva, veiculo);
             break;
 
         default:
