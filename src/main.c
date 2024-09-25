@@ -5,7 +5,7 @@
 #include "../includes/verificacao.h"
 
 int main(void){
-    Reserva * reserva;
+    ListaReserva reserva;
     Veiculo * veiculo;
     char opcao[10];
 
