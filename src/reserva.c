@@ -333,3 +333,32 @@ void consultarQuantitativoReservas(ListaReserva* lista) {
     printf("Carro Convencional: %d\n", carroConvencional);
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
+
+void liberarListaReservas(ListaReserva* lista) {
+    Reserva* atual = lista->inicio;
+    Reserva* proximo;
+    
+    while (atual != NULL) {
+        proximo = atual->prox;
+        free(atual);
+        atual = proximo;
+    }
+}
+
+void liberarListaVeiculos(Veiculo* listaVeiculos) {
+    Veiculo* atual = listaVeiculos;
+    Veiculo* proximo;
+    
+    while (atual != NULL) {
+        proximo = atual->prox;
+        free(atual);
+        atual = proximo;
+    }
+}
+
+void sair(ListaReserva* lista, Veiculo* listaVeiculos) {
+    liberarListaReservas(lista);
+    liberarListaVeiculos(listaVeiculos);
+    printf("Memoria liberada!.\n");
+    exit(0); 
+}

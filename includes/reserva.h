@@ -45,4 +45,13 @@ void consultarVeiculosDisponiveis(Veiculo* listaVeiculos);
 // função para consultar o quantitativo de reservas
 void consultarQuantitativoReservas(ListaReserva* lista);
 
+// função para liberar a lista de reservas 
+void liberarListaReservas(ListaReserva* lista);
+
+// Função para liberar a lista de veículos 
+void liberarListaVeiculos(Veiculo* listaVeiculos);
+
+// função para sair do programa e ao mesmo tempo liberar a memória alocada
+void sair(ListaReserva* lista, Veiculo* listaVeiculos);
+
 #endif
