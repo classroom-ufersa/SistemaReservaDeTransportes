@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../includes/reserva.h"
+#include "../src/reserva.c"
 #include "../includes/verificacao.h"
 
-int main(void)
-{
+int main(void){
+    Reserva * reserva;
+    Veiculo * veiculo;
     char opcao[10];
 
     int opcaoint;
@@ -30,12 +33,60 @@ int main(void)
         }
         switch (opcaoint)
         {
-        case 8:
-            printf("Saindo...\n");
+        case 1:
+            adicionarReserva(&reserva, &veiculo);
             break;
+
+        case 2:
+        {
+            char nomeCliente[50];
+            printf("Digite o nome do solicitante da reserva que deseja excluir: ");
+            scanf(" %[^\n]", nomeCliente);
+            excluirReserva(&reserva, nomeCliente);
+            break;
+        }
+
+        case 3:
+            listarReservas(&reserva);
+            break;
+
+        case 4:
+        {
+            char nomeCliente[50];
+            printf("Digite o nome do cliente para buscar a reserva: ");
+            scanf(" %[^\n]", nomeCliente);
+            buscarReservaPorSolicitante(&reserva, nomeCliente);
+            break;
+        }
+
+        case 5:
+        {
+            char nomeCliente[50];
+            printf("Digite o nome do cliente da reserva que deseja editar: ");
+            scanf(" %[^\n]", nomeCliente);
+            editarReserva(&reserva, veiculo, nomeCliente);
+            break;
+        }
+
+        case 6:
+            consultarVeiculosDisponiveis(veiculo);
+            break;
+
+        case 7:
+            consultarQuantitativoReservas(&reserva);
+            break;
+
+        case 8:
+            sair(&reserva, veiculo);
+            break;
+
         default:
             printf("Valor Invalido\n");
             break;
         }
+
     } while (opcaoint != 8);
+
+    return 0;
+ 
 }
