@@ -6,7 +6,9 @@
 
 int main(void){
     ListaReserva reserva;
-    Veiculo * veiculo;
+    Veiculo * veiculo =  NULL;
+    inicializaListaReserva(&reserva); 
+    
     char opcao[10];
 
     int opcaoint;
@@ -34,7 +36,7 @@ int main(void){
         switch (opcaoint)
         {
         case 1:
-            adicionarReserva(&reserva, &veiculo);
+            adicionarReserva(&reserva, veiculo);
             break;
 
         case 2:

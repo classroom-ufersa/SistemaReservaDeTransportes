@@ -44,7 +44,7 @@ Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* m
         return novoVeiculo;
 }
 
-void adicionarReserva(ListaReserva* lista, Veiculo* listaVeiculos) {
+void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
     char nomeCliente[50], data[20], horarioInicio[10], horarioTermino[10], destino[100];
         int codigoVeiculo;
 
