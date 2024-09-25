@@ -280,3 +280,21 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
 
     printf("a Reserva nao foi encontrada para o cliente: %s\n", nomeCliente);
 }
+
+void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
+    Veiculo* atual = listaVeiculos;
+
+    printf("---- Veículos Disponíveis ----\n");
+    while (atual != NULL) {
+        if (atual->disponibilidade == 1) {
+            printf("Codigo do Veiculo: %d\n", atual->codigo);
+            printf("Tipo: %s\n", tipoVeiculoParaString(atual->tipo));
+            printf("Capacidade: %d\n", atual->capacidade);
+            printf("Motorista: %s\n", atual->motorista);
+            printf("-----------------------------\n");
+        }
+        atual = atual->prox;
+    }
+
+    printf("Nao ha mais veiculos disponiveis.\n");
+}

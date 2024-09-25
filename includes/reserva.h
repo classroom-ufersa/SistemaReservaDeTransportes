@@ -39,4 +39,7 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente);
 // função para editar os dados da reserva escolhida
 void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nomeCliente);
 
+// função para consultar os veículos que estão disponíveis
+void consultarVeiculosDisponiveis(Veiculo* listaVeiculos);
+
 #endif
