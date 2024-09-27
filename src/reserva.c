@@ -82,11 +82,8 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             printf("Data invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
             }
             } while (!VerificarData(data));
-
-    
             printf("Horario de inicio (hh:mm): ");
             scanf(" %[^\n]", horarioInicio);
-    
             printf("Horario de termino (hh:mm): ");
             scanf(" %[^\n]", horarioTermino);
             do{ 
