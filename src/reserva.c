@@ -305,16 +305,31 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
                     }while(!VerificarSeSoTemLetras(atual->nomeCliente));
                     break;
                 case 2:
+                    do{
                     printf("Nova data (dd/mm/aaaa): ");
-                    scanf(" %[^\n]", atual->data);
+                    scanf(" %[^\n]",atual->data);
+                        if (!VerificarData(atual->data)) {
+                            printf("Data invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
+                        }
+                    } while (!VerificarData(atual->data));
                     break;
                 case 3:
+                    do {
                     printf("Novo horario de inicio (hh:mm): ");
-                    scanf(" %[^\n]", atual->horarioInicio);
+                    scanf(" %[^\n]",atual->horarioInicio);
+                        if (!VerificarHora(atual->horarioInicio)) {
+                            printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+                        }
+                    } while (!VerificarHora(atual->horarioInicio));
                     break;
                 case 4:
-                    printf("Novo horario de termino (hh:mm): ");
-                    scanf(" %[^\n]", atual->horarioTermino);
+                    do {
+                    printf("Horario de termino (hh:mm): ");
+                    scanf(" %[^\n]",atual->horarioTermino);
+                        if (!VerificarHora(atual->horarioTermino)) {
+                            printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+                        }
+                    } while (!VerificarHora(atual->horarioTermino));
                     break;
                 case 5:
                     do{ 

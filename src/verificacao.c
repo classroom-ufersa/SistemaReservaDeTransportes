@@ -5,7 +5,7 @@
 int VerificarSeSoTemLetras(const char *nome){
     while (*nome)
     {
-        if(!isalpha(*nome)){
+        if(!isalpha(*nome) && *nome !=  ' '){
             return 0;
         }
         nome++;
