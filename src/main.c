@@ -7,6 +7,7 @@ int main(void){
     ListaReserva *reserva = (ListaReserva*) malloc(sizeof(ListaReserva*));
     Veiculo * veiculo =  NULL;
     inicializaListaReserva(reserva); 
+    inicializaVeiculos(&veiculo);
     
     char opcao[10];
 

@@ -21,8 +21,14 @@ typedef struct ListaReserva ListaReserva;
 // função para inicializar a lista de reservas
 void inicializaListaReserva(ListaReserva* lista);
 
+//função para inicialicar a lista de veiculos
+void inicializaVeiculos(Veiculo** listaVeiculos);
+
 // função para criar um novo veículo
 Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* motorista);
+
+//função para adicionar um veiculo
+void adicionarVeiculo(Veiculo** listaVeiculos, Veiculo* novoVeiculo);
 
 // função para adicionar uma nova reserva
 void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos);

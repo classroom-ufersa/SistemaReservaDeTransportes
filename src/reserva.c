@@ -31,6 +31,22 @@ void inicializaListaReserva(ListaReserva* lista) {
     lista->inicio = NULL;
 }
 
+void inicializaVeiculos(Veiculo** listaVeiculos) {
+    Veiculo* veiculo1 = criaVeiculo(1, ONIBUS, 50, "Motorista 1");
+    adicionarVeiculo(listaVeiculos, veiculo1);
+
+    Veiculo* veiculo2 = criaVeiculo(2, VAN, 15, "Motorista 2");
+    adicionarVeiculo(listaVeiculos, veiculo2);
+
+    Veiculo* veiculo3 = criaVeiculo(3, PICKUP, 10, "Motorista 3");
+    adicionarVeiculo(listaVeiculos, veiculo3);
+
+    Veiculo* veiculo4 = criaVeiculo(4, CARRO_CONVENCIONAL, 5, "Motorista 4");
+    adicionarVeiculo(listaVeiculos, veiculo4);
+
+    printf("Todos os Veiculos estao disponiveis!\n");
+}
+
 Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* motorista) {
     Veiculo* novoVeiculo = (Veiculo*) malloc(sizeof(Veiculo));
         novoVeiculo->codigo = codigo;
@@ -40,6 +56,11 @@ Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* m
         novoVeiculo->disponibilidade = 1; // veiculo ja vai vir disponivel por padrão
         novoVeiculo->prox = NULL;
         return novoVeiculo;
+}
+
+void adicionarVeiculo(Veiculo** listaVeiculos, Veiculo* novoVeiculo) {
+    novoVeiculo->prox = *listaVeiculos;  
+    *listaVeiculos = novoVeiculo;        
 }
 
 void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
