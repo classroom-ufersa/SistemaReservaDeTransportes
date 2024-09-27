@@ -44,3 +44,23 @@ int VerificarData(const char* data) {
 
     return 1;
 }
+
+int VerificarHora(const char* hora) {
+    //verifica se a string tem 5 caracteres (hh:mm)
+    if (strlen(hora) != 5) {
+        return 0;
+    }
+
+    //verifica se os ":" estao na posição 2
+    if (hora[2] != ':') {
+        return 0;
+    }
+
+    //verifica se os outros caracteres sao apenas numeros
+    if (!isdigit(hora[0]) || !isdigit(hora[1]) || !isdigit(hora[3]) || !isdigit(hora[4])) {
+        return 0;
+    }
+
+    return 1;
+}
+
