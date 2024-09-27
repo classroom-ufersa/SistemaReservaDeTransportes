@@ -70,7 +70,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             }
             }while(!VerificarSeSoTemLetras(destino));
             do{ 
-            printf("Codigo do veiculo para reservar:\n");
+            printf("Qual veiculo deseja reservar?:\n");
             printf("1.Onibus\n");
             printf("2.Van\n");
             printf("3.Pickup\n");
