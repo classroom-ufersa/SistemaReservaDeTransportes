@@ -98,31 +98,31 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             printf("4.Carro Convencional\n");
             printf("Escolha: ");
             scanf("%d", &codigoVeiculo);
-            switch (codigoVeiculo){
+            switch (codigoVeiculo) {
             case 1:
-                tipoVeiculo = ONIBUS;
-                break;
+            tipoVeiculo = ONIBUS;  // Define o tipo de veículo selecionado
+                        break;
             case 2:
-                tipoVeiculo = VAN;
-                break;
+            tipoVeiculo = VAN;
+                        break;
             case 3:
-                tipoVeiculo = PICKUP;
-                break;
+            tipoVeiculo = PICKUP;
+                        break;
             case 4:
-                tipoVeiculo = CARRO_CONVENCIONAL;
-                break;
+            tipoVeiculo = CARRO_CONVENCIONAL;
+                        break;
             default:
-                printf("Codigo invalido!\n");
-                continue;
-            }
+            printf("Código inválido!\n");
+            continue;
+}
             }while(codigoVeiculo < 1 || codigoVeiculo > 4);
 
     // verifica se o veiculos está disponivel para a reserva
     Veiculo * veiculoEscolhido = NULL;
     Veiculo * veiculoAtual = *listaVeiculos;
-    printf("Lista de veículos:\n");
+    printf("Lista de veuculos:\n");
     while (veiculoAtual != NULL) {
-        printf("Código: %d, Disponibilidade: %d\n", veiculoAtual->codigo, veiculoAtual->disponibilidade);
+        printf("Codigo: %d, Disponibilidade: %d\n", veiculoAtual->codigo, veiculoAtual->disponibilidade);
         veiculoAtual = veiculoAtual->prox;
     }
 
@@ -130,20 +130,20 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
     veiculoAtual = *listaVeiculos;
 
     while (veiculoAtual != NULL) {
-        if (veiculoAtual->codigo == codigoVeiculo && veiculoAtual->disponibilidade == 1) {
-            veiculoEscolhido = veiculoAtual;
-            break;
-        }
-        veiculoAtual = veiculoAtual->prox;
+    if (veiculoAtual->tipo == tipoVeiculo && veiculoAtual->disponibilidade == 1) {
+        veiculoEscolhido = veiculoAtual; 
+        break;
     }
+    veiculoAtual = veiculoAtual->prox;
+}
 
     if (veiculoEscolhido == NULL) {
-        printf("Veículo solicitado não foi encontrado ou não está disponível!\n");
+        printf("Veiculo solicitado nao foi encontrado ou não esta disponivel!\n");
         return;
     }
     Reserva* novaReserva = (Reserva*) malloc(sizeof(Reserva));
     if (novaReserva == NULL){
-        printf("menmoria nao alocada!\n");
+        printf("a Memoria nao foi alocada!\n");
     }
     
     strcpy(novaReserva->nomeCliente, nomeCliente);
