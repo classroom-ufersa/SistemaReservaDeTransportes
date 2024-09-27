@@ -72,7 +72,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             printf("Nome do Cliente: ");
              scanf(" %[^\n]", nomeCliente);
              if(!VerificarSeSoTemLetras(nomeCliente)){
-                printf("Nome invalido. Digite novamente!\n");
+                printf("\nERROR! O nome so deve conter letras. Digite novamente!\n");
              }
             }while(!VerificarSeSoTemLetras(nomeCliente));
             do{
@@ -93,7 +93,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             printf("Destino: ");
             scanf(" %[^\n]", destino);
             if(!VerificarSeSoTemLetras(destino)){
-                printf("So deve ter letras!\n");
+                printf("O destino so deve conter letras!\n");
             }
             }while(!VerificarSeSoTemLetras(destino));
             do{ 
@@ -144,7 +144,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
 }
 
     if (veiculoEscolhido == NULL) {
-        printf("o Veiculo solicitado nao foi encontrado ou nao esta disponivel!\n");
+        printf("\no Veiculo solicitado nao foi encontrado ou nao esta disponivel!\n");
         return;
     }
     Reserva* novaReserva = (Reserva*) malloc(sizeof(Reserva));
@@ -260,7 +260,7 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
                     tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
                     atual->veiculoAssociado->codigo);
             } else {
-                printf("Nenhum veiculo associado.\n");
+                printf("\nNenhum veiculo associado.\n");
             }
 
             return;
@@ -268,7 +268,7 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
         atual = atual->prox;
     }
 
-    printf("a Reserva nao foi encontrada para o solicitante: %s\n", nomeCliente);
+    printf("\na Reserva nao foi encontrada para o solicitante: %s\n", nomeCliente);
 }
 
 void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nomeCliente) {
