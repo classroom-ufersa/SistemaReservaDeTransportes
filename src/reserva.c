@@ -43,14 +43,17 @@ Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* m
 }
 
 void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
+
     char nomeCliente[50], data[20], horarioInicio[10], horarioTermino[10], destino[100];
         int codigoVeiculo;
-
+        TipoVeiculo tipoVeiculo;
+            do{ 
             printf("Nome do Cliente: ");
              scanf(" %[^\n]", nomeCliente);
              if(!VerificarSeSoTemLetras(nomeCliente)){
-                printf("Nome invalido.Digite novamente!");
+                printf("Nome invalido.Digite novamente!\n");
              }
+            }while(!VerificarSeSoTemLetras(nomeCliente));
             printf("Data (dd/mm/aaaa): ");
             scanf(" %[^\n]", data);
     
@@ -59,30 +62,69 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
     
             printf("Horario de termino (hh:mm): ");
             scanf(" %[^\n]", horarioTermino);
-    
+            do{ 
             printf("Destino: ");
             scanf(" %[^\n]", destino);
-    
-            printf("Codigo do veiculo para reservar: ");
+            if(!VerificarSeSoTemLetras(destino)){
+                printf("So deve ter letras!\n");
+            }
+            }while(!VerificarSeSoTemLetras(destino));
+            do{ 
+            printf("Codigo do veiculo para reservar:\n");
+            printf("1.Onibus\n");
+            printf("2.Van\n");
+            printf("3.Pickup\n");
+            printf("4.Carro Convencional\n");
+            printf("Escolha: ");
             scanf("%d", &codigoVeiculo);
+            switch (codigoVeiculo){
+            case 1:
+                tipoVeiculo = ONIBUS;
+                break;
+            case 2:
+                tipoVeiculo = VAN;
+                break;
+            case 3:
+                tipoVeiculo = PICKUP;
+                break;
+            case 4:
+                tipoVeiculo = CARRO_CONVENCIONAL;
+                break;
+            default:
+                printf("Codigo invalido!\n");
+                continue;
+            }
+            }while(codigoVeiculo < 1 || codigoVeiculo > 4);
 
     // verifica se o veiculos está disponivel para a reserva
-    Veiculo* veiculoEscolhido = NULL;
-    Veiculo** atual = listaVeiculos;
-        while (atual != NULL) {
-             if ((*atual)->codigo == codigoVeiculo && (*atual)->disponibilidade == 1) {
-            veiculoEscolhido = *atual;
+    Veiculo * veiculoEscolhido = NULL;
+    Veiculo * veiculoAtual = *listaVeiculos;
+    printf("Lista de veículos:\n");
+    while (veiculoAtual != NULL) {
+        printf("Código: %d, Disponibilidade: %d\n", veiculoAtual->codigo, veiculoAtual->disponibilidade);
+        veiculoAtual = veiculoAtual->prox;
+    }
+
+    // Verifica se o veículo está disponível para a reserva
+    veiculoAtual = *listaVeiculos;
+
+    while (veiculoAtual != NULL) {
+        if (veiculoAtual->codigo == codigoVeiculo && veiculoAtual->disponibilidade == 1) {
+            veiculoEscolhido = veiculoAtual;
             break;
         }
-        atual = &((*atual)->prox);
+        veiculoAtual = veiculoAtual->prox;
     }
 
     if (veiculoEscolhido == NULL) {
-        printf("O Veiculo solicitado nao esta disponivel ou nao foi encontrado!\n");
+        printf("Veículo solicitado não foi encontrado ou não está disponível!\n");
         return;
     }
-
     Reserva* novaReserva = (Reserva*) malloc(sizeof(Reserva));
+    if (novaReserva == NULL){
+        printf("menmoria nao alocada!\n");
+    }
+    
     strcpy(novaReserva->nomeCliente, nomeCliente);
     strcpy(novaReserva->data, data);
     strcpy(novaReserva->horarioInicio, horarioInicio);
@@ -220,8 +262,13 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
 
             switch (opcao) {
                 case 1:
+                    do{ 
                     printf("Novo nome do Cliente: ");
                     scanf(" %[^\n]", atual->nomeCliente);
+                    if(!VerificarSeSoTemLetras(atual->nomeCliente)){
+                        printf("Nome invalido.Digite novamente!\n");
+                    }
+                    }while(!VerificarSeSoTemLetras(atual->nomeCliente));
                     break;
                 case 2:
                     printf("Nova data (dd/mm/aaaa): ");
@@ -236,8 +283,14 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
                     scanf(" %[^\n]", atual->horarioTermino);
                     break;
                 case 5:
+                    do{ 
                     printf("Novo destino: ");
                     scanf(" %[^\n]", atual->destino);
+                    if (!VerificarSeSoTemLetras(atual->destino)){
+                        printf("Apenas letras!\n");
+                    }
+                    
+                    }while(!VerificarSeSoTemLetras(atual->destino));
                     break;
                 case 6: {
                     int codigoVeiculo;

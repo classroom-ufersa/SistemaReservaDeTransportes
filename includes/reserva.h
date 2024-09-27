@@ -7,7 +7,7 @@ typedef enum {
     VAN,
     PICKUP,
     CARRO_CONVENCIONAL
-} TipoVeiculo;
+}TipoVeiculo;
 
 // struct para os tipos de veiculos
 typedef struct Veiculo Veiculo;
