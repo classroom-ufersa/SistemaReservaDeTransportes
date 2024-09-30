@@ -32,19 +32,20 @@ void inicializaListaReserva(ListaReserva* lista) {
 }
 
 void inicializaVeiculos(Veiculo** listaVeiculos) {
-    Veiculo* veiculo1 = criaVeiculo(1, ONIBUS, 50, "Motorista 1");
-    adicionarVeiculo(listaVeiculos, veiculo1);
 
-    Veiculo* veiculo2 = criaVeiculo(2, VAN, 15, "Motorista 2");
-    adicionarVeiculo(listaVeiculos, veiculo2);
+    FILE *arquivo = fopen("../data/veiculos.txt", "rt");
+    if (arquivo == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+    }
 
-    Veiculo* veiculo3 = criaVeiculo(3, PICKUP, 10, "Motorista 3");
-    adicionarVeiculo(listaVeiculos, veiculo3);
+    int codigo; TipoVeiculo tipo; int capacidade; char motorista[50];
 
-    Veiculo* veiculo4 = criaVeiculo(4, CARRO_CONVENCIONAL, 5, "Motorista 4");
-    adicionarVeiculo(listaVeiculos, veiculo4);
+    while (fscanf(arquivo,"%d\t%d\t%d\t%[^\n]",&codigo,&tipo,&capacidade,motorista) != EOF){
+        Veiculo *aux = criaVeiculo(codigo,tipo,capacidade,motorista);
+        adicionarVeiculo(listaVeiculos, aux);
+    }
 
-    printf("Todos os Veiculos estao disponiveis!\n");
+    fclose(arquivo);
 }
 
 Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* motorista) {

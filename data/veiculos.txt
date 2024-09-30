@@ -1,0 +1,4 @@
+1   0   50  Motorista 1
+2   1   30  Motorista 2
+3   2   15  Motorista 3
+4   3   5   Motorista 4
