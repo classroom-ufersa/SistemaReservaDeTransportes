@@ -1,0 +1,44 @@
+<<<<<<< Updated upstream
+=======
+
+~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
+Nome do cliente: alisson
+Data: 11/11/1111
+Hora de inicio: 10:30
+Hora de termino: 19:20
+Destino: jbe
+Veiculo reservado: 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
+Nome do cliente: andrei
+Data: 22/22/2222
+Hora de inicio: 22:22
+Hora de termino: 22:30
+Destino: pdf
+Veiculo reservado: 2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
+Nome do cliente: pedro
+Data: 33/33/3333
+Hora de inicio: 33:33
+Hora de termino: 33:39
+Destino: pdf
+Veiculo reservado: 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
+Nome do cliente: ali
+Data: 11/11/1111
+Hora de inicio: 11:11
+Hora de termino: 11:11
+Destino: jbe
+Veiculo reservado: 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
+Nome do cliente: drei
+Data: 22/22/2222
+Hora de inicio: 22:22
+Hora de termino: 22:22
+Destino: pdf
+Veiculo reservado: 2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>>>>>> Stashed changes

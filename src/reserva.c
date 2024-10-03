@@ -265,7 +265,6 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     printf("A reserva foi removida!\n");
 }
 
-
 // converter o tipo de veículo escolhido para string
 const char* tipoVeiculoParaString(TipoVeiculo tipo) {
     switch (tipo) {
