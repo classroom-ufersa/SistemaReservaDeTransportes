@@ -228,7 +228,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     }
 
     FILE *arquivoOriginal = fopen("../data/reservas.txt", "r");
-    FILE *arquivotemp = fopen("../data/reservas_temp.txt", "w"); // Certifique-se de que o nome do arquivo está correto
+    FILE *arquivotemp = fopen("../data/reservas_temp.txt", "w"); 
 
     if (arquivoOriginal == NULL || arquivotemp == NULL) {
         printf("Erro ao abrir o arquivo\n");
@@ -239,21 +239,32 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     int ignorar_reserva = 0;
 
     while (fgets(linha, sizeof(linha), arquivoOriginal)) {
-        // Se a linha contém o nome do cliente que queremos excluir
-        if (strncmp(linha, "Nome do cliente: ", 17) == 0 && strstr(linha, nomeCliente)) {
-            ignorar_reserva = 1; // Ignorar esta reserva
-        }
-
-        // Se não deve ignorar, escreve a linha no arquivo temporário
-        if (!ignorar_reserva) {
+    
+    if (strncmp(linha, "~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~", 35) == 0) {
+        char nomeLinha[256];
+        
+        fgets(nomeLinha, sizeof(nomeLinha), arquivoOriginal);
+        
+        
+        if (strstr(nomeLinha, nomeCliente) != NULL) {
+            ignorar_reserva = 1; 
+        } else {
+            
             fputs(linha, arquivotemp);
+            fputs(nomeLinha, arquivotemp);
         }
-
-        // Se a linha é o fim da reserva, reseta a flag de ignorar
-        if (ignorar_reserva && strncmp(linha, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", 37) == 0) {
-            ignorar_reserva = 0;
+    } else if (ignorar_reserva) {
+        
+        if (strncmp(linha, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", 37) == 0) {
+            ignorar_reserva = 0; 
         }
+        
+    } else {
+        
+        fputs(linha, arquivotemp);
     }
+}
+
 
     fclose(arquivoOriginal);
     fclose(arquivotemp);
@@ -277,62 +288,111 @@ const char* tipoVeiculoParaString(TipoVeiculo tipo) {
 }
 
 void listarReservas(ListaReserva* lista) {
-    Reserva* atual = lista->inicio;
-
-    if (atual == NULL) {
-        printf("Nao ha reservas cadastradas.\n");
-        return;
+    FILE *arquivo = fopen("../data/reservas.txt","r");
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
     }
 
-    printf("\n~~~~~ Lista de Reservas ~~~~~~\n");
-    while (atual != NULL) {
-        printf("Nome do Cliente: %s\n", atual->nomeCliente);
-        printf("Data da reserva: %s\n", atual->data);
-        printf("Horario de inicio: %s\n", atual->horarioInicio);
-        printf("Horario de termino: %s\n", atual->horarioTermino);
-        printf("Destino: %s\n", atual->destino);
-        
-        if (atual->veiculoAssociado != NULL) {
-            printf("Veiculo associado: %s (Codigo: %d)\n", 
-                tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
-                atual->veiculoAssociado->codigo);
-        } else {
-            printf("Nenhum veiculo associado.\n");
-        }
-
-        printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        atual = atual->prox;
+    char linha[256];
+    int linhasLisdas = 0;
+    while(fgets(linha, sizeof(linha), arquivo)){
+        printf("%s", linha);
+        linhasLisdas++;
     }
+
+    if(linhasLisdas == 0){
+        printf("Lista está vazia!\n");
+    }
+    fclose(arquivo);
 }
 
 void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
-    Reserva* atual = lista->inicio;
+    FILE *arquivo = fopen("../data/reservas.txt", "r");
+    if (arquivo == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
 
+    Reserva * novaReserva;
+    int encontrado = 0; 
+
+    
+    while (!feof(arquivo)) {
+        novaReserva = (Reserva*) malloc(sizeof(Reserva));
+        fscanf(arquivo, "%s %s %s %s %s", 
+            novaReserva->nomeCliente, 
+            novaReserva->data, 
+            novaReserva->horarioInicio, 
+            novaReserva->horarioTermino, 
+            novaReserva->destino);
+
+        novaReserva->veiculoAssociado = NULL; 
+        novaReserva->prox = lista->inicio;
+        lista->inicio = novaReserva;
+    }
+    fclose(arquivo);
+
+    
+    Reserva* atual = lista->inicio;
     while (atual != NULL) {
+        
         if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
             printf("Reserva encontrada:\n");
             printf("Nome do Cliente: %s\n", atual->nomeCliente);
             printf("Data da reserva: %s\n", atual->data);
-            printf("Horario de inicio: %s\n", atual->horarioInicio);
-            printf("Horario de termino: %s\n", atual->horarioTermino);
+            printf("Horário de início: %s\n", atual->horarioInicio);
+            printf("Horário de término: %s\n", atual->horarioTermino);
             printf("Destino: %s\n", atual->destino);
-            
+
             if (atual->veiculoAssociado != NULL) {
-                printf("Veiculo associado: %s (Codigo: %d)\n", 
+                printf("Veículo associado: %s (Código: %d)\n", 
                     tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
                     atual->veiculoAssociado->codigo);
             } else {
-                printf("\nNenhum veiculo associado.\n");
+                printf("Nenhum veículo associado.\n");
             }
 
-            return;
+            encontrado = 1;
+            break; 
         }
         atual = atual->prox;
     }
 
-    printf("\na Reserva nao foi encontrada para o solicitante: %s\n", nomeCliente);
+    if (!encontrado) {
+        printf("\nA reserva não foi encontrada para o solicitante: %s\n", nomeCliente);
+    }
 }
+void salvarDepoisDeEditado(ListaReserva * lista){
+    FILE *arquivo = fopen("../data/reservas.txt", "w");
+    if(arquivo == NULL){
+        printf("Erro ao abrir arquivo!\n");
+        exit(1);
+    }
 
+    Reserva * atual = lista->inicio;
+
+    while (atual != NULL) {
+        fprintf(arquivo, "~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~\nNome do Cliente: %s\nData: %s\nHorario de inicio: %s\nHorario de termino: %s\nDestino: %s\n", 
+                atual->nomeCliente, 
+                atual->data, 
+                atual->horarioInicio, 
+                atual->horarioTermino, 
+                atual->destino);
+
+        if (atual->veiculoAssociado != NULL) {
+            fprintf(arquivo, "Veículo: %u (Código: %d)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", 
+                    atual->veiculoAssociado->tipo, 
+                    atual->veiculoAssociado->codigo);
+        } else {
+            fprintf(arquivo, "Veículo: Nenhum associado\n");
+        }
+
+        atual = atual->prox;
+    }
+
+    fclose(arquivo); 
+}
 void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nomeCliente) {
     Reserva* atual = lista->inicio;
 
@@ -425,7 +485,7 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
                 default:
                     printf("Opcao invalida!\n");
             }
-
+            salvarDepoisDeEditado(lista);
             printf("os Dados da reserva foram atualizados!\n");
             return;
         }
