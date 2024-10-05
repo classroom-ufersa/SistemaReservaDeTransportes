@@ -40,7 +40,7 @@ void inicializaVeiculos(Veiculo** listaVeiculos) {
 
     int codigo; TipoVeiculo tipo; int capacidade; char motorista[50];
 
-    while (fscanf(arquivo,"%d\t%d\t%d\t%[^\n]",&codigo,&tipo,&capacidade,motorista) != EOF){
+    while (fscanf(arquivo,"%d\t%u\t%d\t%[^\n]",&codigo,&tipo,&capacidade,motorista) != EOF){
         Veiculo *aux = criaVeiculo(codigo,tipo,capacidade,motorista);
         adicionarVeiculo(listaVeiculos, aux);
     }
