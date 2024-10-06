@@ -132,24 +132,48 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             }while(codigoVeiculo < 1 || codigoVeiculo > 4);
 
     // verifica se o veiculos está disponivel para a reserva
-    Veiculo * veiculoEscolhido = NULL;
-    Veiculo * veiculoAtual = *listaVeiculos;
-    printf("Lista de veiculos:\n");
-    while (veiculoAtual != NULL) {
-        printf("Codigo: %d, Disponibilidade: %d\n", veiculoAtual->codigo, veiculoAtual->disponibilidade);
-        veiculoAtual = veiculoAtual->prox;
-    }
+ Veiculo* veiculoEscolhido = NULL;
+    do {
+        printf("Qual veiculo deseja reservar?:\n");
+        printf("1.Onibus\n");
+        printf("2.Van\n");
+        printf("3.Pickup\n");
+        printf("4.Carro Convencional\n");
+        printf("Escolha: ");
+        scanf("%d", &codigoVeiculo);
 
-    // Verifica se o veículo está disponível para a reserva
-    veiculoAtual = *listaVeiculos;
+        switch (codigoVeiculo) {
+            case 1:
+                tipoVeiculo = ONIBUS;
+                break;
+            case 2:
+                tipoVeiculo = VAN;
+                break;
+            case 3:
+                tipoVeiculo = PICKUP;
+                break;
+            case 4:
+                tipoVeiculo = CARRO_CONVENCIONAL;
+                break;
+            default:
+                printf("Codigo invalido!\n");
+                continue;
+        }
 
-    while (veiculoAtual != NULL) {
-    if (veiculoAtual->tipo == tipoVeiculo && veiculoAtual->disponibilidade == 1) {
-        veiculoEscolhido = veiculoAtual; 
-        break;
-    }
-    veiculoAtual = veiculoAtual->prox;
-}
+        Veiculo* veiculoAtual = *listaVeiculos;
+        while (veiculoAtual != NULL) {
+            if (veiculoAtual->tipo == tipoVeiculo && veiculoAtual->disponibilidade == 1) {
+                veiculoEscolhido = veiculoAtual; 
+                break;
+            }
+            veiculoAtual = veiculoAtual->prox;
+        }
+
+        if (veiculoEscolhido == NULL) {
+            printf("\nO Veiculo solicitado nao foi encontrado ou nao esta disponivel!\n");
+        }
+
+    } while (veiculoEscolhido == NULL); 
 
     if (veiculoEscolhido == NULL) {
         printf("\no Veiculo solicitado nao foi encontrado ou nao esta disponivel!\n");
