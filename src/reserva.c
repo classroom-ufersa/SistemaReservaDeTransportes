@@ -70,35 +70,35 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
         int codigoVeiculo;
         TipoVeiculo tipoVeiculo;
             do{ 
-            printf("Nome do Cliente: ");
+            printf("\nNome do Cliente: \n");
              scanf(" %[^\n]", nomeCliente);
              if(!VerificarSeSoTemLetras(nomeCliente)){
                 printf("\nERROR! O nome so deve conter letras. Digite novamente!\n");
              }
             }while(!VerificarSeSoTemLetras(nomeCliente));
             do{
-            printf("Data (dd/mm/aaaa): ");
+            printf("\nData (dd/mm/aaaa): \n");
             scanf(" %[^\n]", data);
             if (!VerificarData(data)) {
-            printf("Data invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
+            printf("\nData invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
             }
             } while (!VerificarData(data));
                do {
-            printf("Horario de inicio (hh:mm): ");
+            printf("\nHorario de inicio (hh:mm): \n");
             scanf(" %[^\n]", horarioInicio);
             if (!VerificarHora(horarioInicio)) {
-            printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+            printf("\nHorario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
              }
              } while (!VerificarHora(horarioInicio));
             do {
-            printf("Horario de termino (hh:mm): ");
+            printf("\nHorario de termino (hh:mm): \n");
              scanf(" %[^\n]", horarioTermino);
             if (!VerificarHora(horarioTermino)) {
             printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
              }
              } while (!VerificarHora(horarioTermino));
             do{ 
-            printf("Destino: ");
+            printf("\nDestino: \n");
             scanf(" %[^\n]", destino);
             if(!VerificarSeSoTemLetras(destino)){
                 printf("O destino so deve conter letras!\n");
