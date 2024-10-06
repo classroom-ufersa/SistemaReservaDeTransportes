@@ -104,33 +104,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
                 printf("O destino so deve conter letras!\n");
             }
             }while(!VerificarSeSoTemLetras(destino));
-            do{ 
-            printf("Qual veiculo deseja reservar?:\n");
-            printf("1.Onibus\n");
-            printf("2.Van\n");
-            printf("3.Pickup\n");
-            printf("4.Carro Convencional\n");
-            printf("Escolha: ");
-            scanf("%d", &codigoVeiculo);
-            switch (codigoVeiculo) {
-            case 1:
-            tipoVeiculo = ONIBUS;  // Define o tipo de veículo selecionado
-                        break;
-            case 2:
-            tipoVeiculo = VAN;
-                        break;
-            case 3:
-            tipoVeiculo = PICKUP;
-                        break;
-            case 4:
-            tipoVeiculo = CARRO_CONVENCIONAL;
-                        break;
-            default:
-            printf("Codigo invalido!\n");
-            continue;
-}
-            }while(codigoVeiculo < 1 || codigoVeiculo > 4);
-
+ 
     // verifica se o veiculos está disponivel para a reserva
  Veiculo* veiculoEscolhido = NULL;
     do {
