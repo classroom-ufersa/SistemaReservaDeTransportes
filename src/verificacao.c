@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdlib.h>
+
+void limpaTela() {
+    #ifdef _WIN32
+        system("cls");  
+    #else
+        system("clear"); 
+    #endif
+}
 
 int VerificarSeSoTemLetras(const char *nome){
     while (*nome)
