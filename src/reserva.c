@@ -70,35 +70,35 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
         int codigoVeiculo;
         TipoVeiculo tipoVeiculo;
             do{ 
-            printf("\nNome do Cliente: \n");
+            printf("Nome do Cliente: \n");
              scanf(" %[^\n]", nomeCliente);
              if(!VerificarSeSoTemLetras(nomeCliente)){
                 printf("\nERROR! O nome so deve conter letras. Digite novamente!\n");
              }
             }while(!VerificarSeSoTemLetras(nomeCliente));
             do{
-            printf("\nData (dd/mm/aaaa): \n");
+            printf("Data (dd/mm/aaaa): \n");
             scanf(" %[^\n]", data);
             if (!VerificarData(data)) {
             printf("\nData invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
             }
             } while (!VerificarData(data));
                do {
-            printf("\nHorario de inicio (hh:mm): \n");
+            printf("Horario de inicio (hh:mm): \n");
             scanf(" %[^\n]", horarioInicio);
             if (!VerificarHora(horarioInicio)) {
             printf("\nHorario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
              }
              } while (!VerificarHora(horarioInicio));
             do {
-            printf("\nHorario de termino (hh:mm): \n");
+            printf("Horario de termino (hh:mm): \n");
              scanf(" %[^\n]", horarioTermino);
             if (!VerificarHora(horarioTermino)) {
             printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
              }
              } while (!VerificarHora(horarioTermino));
             do{ 
-            printf("\nDestino: \n");
+            printf("Destino: \n");
             scanf(" %[^\n]", destino);
             if(!VerificarSeSoTemLetras(destino)){
                 printf("O destino so deve conter letras!\n");
@@ -185,6 +185,8 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
 
     fclose(arquivo);
 
+    limpaTela();
+
     printf("\nReserva adicionada com sucesso!\n");
 }
 
@@ -211,7 +213,6 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
             // Libera a memória que foi alocada para a reserva
             free(atual);
             reservaEncontrada = 1;
-            printf("A reserva excluída com sucesso!\n");
             break; // Sai do loop após a exclusão
         }
 
@@ -221,7 +222,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     }
 
     if (!reservaEncontrada) {
-        printf("A reserva não foi encontrada!\n");
+        printf("A reserva nao foi encontrada!\n");
         return;
     }
 
@@ -271,7 +272,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     remove("../data/reservas.txt");
     rename("../data/reservas_temp.txt", "../data/reservas.txt"); // Corrigido para ".txt"
 
-    printf("A reserva foi removida!\n");
+    printf("\nA reserva foi removida!\n");
 }
 
 // converter o tipo de veículo escolhido para string
@@ -300,7 +301,7 @@ void listarReservas(ListaReserva* lista) {
     }
 
     if(linhasLisdas == 0){
-        printf("Lista está vazia!\n");
+        printf("Lista esta vazia!\n");
     }
     fclose(arquivo);
 }
@@ -339,16 +340,16 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
             printf("Reserva encontrada:\n");
             printf("Nome do Cliente: %s\n", atual->nomeCliente);
             printf("Data da reserva: %s\n", atual->data);
-            printf("Horário de início: %s\n", atual->horarioInicio);
-            printf("Horário de término: %s\n", atual->horarioTermino);
+            printf("Horario de inicio: %s\n", atual->horarioInicio);
+            printf("Horario de termino: %s\n", atual->horarioTermino);
             printf("Destino: %s\n", atual->destino);
 
             if (atual->veiculoAssociado != NULL) {
-                printf("Veículo associado: %s (Código: %d)\n", 
+                printf("Veiculo associado: %s (Codigo: %d)\n", 
                     tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
                     atual->veiculoAssociado->codigo);
             } else {
-                printf("Nenhum veículo associado.\n");
+                printf("Nenhum veiculo associado.\n");
             }
 
             encontrado = 1;
@@ -358,7 +359,7 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
     }
 
     if (!encontrado) {
-        printf("\nA reserva não foi encontrada para o solicitante: %s\n", nomeCliente);
+        printf("\nA reserva nao foi encontrada para o solicitante: %s\n", nomeCliente);
     }
 }
 void salvarDepoisDeEditado(ListaReserva * lista){

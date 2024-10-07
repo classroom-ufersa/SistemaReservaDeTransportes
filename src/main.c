@@ -36,13 +36,15 @@ int main(void){
         switch (opcaoint)
         {
         case 1:
+            limpaTela();
             adicionarReserva(reserva, &veiculo);
             break;
 
         case 2:
-        {
+        {   
+            limpaTela();
             char nomeCliente[50];
-            printf("Digite o nome do solicitante da reserva que deseja excluir: ");
+            printf("Digite o nome do cliente da reserva que deseja excluir: \n");
             scanf(" %[^\n]", nomeCliente);
             excluirReserva(reserva, nomeCliente);
             break;
