@@ -83,20 +83,30 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             printf("\nData invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
             }
             } while (!VerificarData(data));
-               do {
-            printf("Horario de inicio (hh:mm): \n");
-            scanf(" %[^\n]", horarioInicio);
-            if (!VerificarHora(horarioInicio)) {
-            printf("\nHorario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
-             }
-             } while (!VerificarHora(horarioInicio));
             do {
-            printf("Horario de termino (hh:mm): \n");
-             scanf(" %[^\n]", horarioTermino);
-            if (!VerificarHora(horarioTermino)) {
-            printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
-             }
-             } while (!VerificarHora(horarioTermino));
+                printf("Horario de inicio (hh:mm): ");
+                scanf(" %[^\n]", horarioInicio);
+                if (!VerificarHora(horarioInicio)) {
+                printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+                }
+                } while (!VerificarHora(horarioInicio));
+
+                int minutosInicio, minutosTermino;
+
+            do {
+                printf("Horario de termino (hh:mm): ");
+                scanf(" %[^\n]", horarioTermino);
+                if (!VerificarHora(horarioTermino)) {
+                printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+                } else {
+                minutosInicio = converteHoraParaMinutos(horarioInicio);
+                minutosTermino = converteHoraParaMinutos(horarioTermino);
+                if (minutosTermino <= minutosInicio) {
+                printf("Erro! O horario de termino deve ser maior que o horario de inicio. Tente novamente.\n");
+                }
+            }
+            } while (!VerificarHora(horarioTermino) || minutosTermino <= minutosInicio);
+
             do{ 
             printf("Destino: \n");
             scanf(" %[^\n]", destino);

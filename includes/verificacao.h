@@ -1,6 +1,7 @@
 #ifndef VERIFICACAO_H
 #define VERIFICACAO_H
 
+//função para limpar a tela do console
 void limpaTela();
 
 //função que vai verificar se só existe lestras no nome
@@ -14,5 +15,8 @@ int VerificarData(const char* data);
 
 //função para verificar se a hora esta sendo escrita corretamente
 int VerificarHora(const char* hora);
+
+//função para converter horas para minutos
+int converteHoraParaMinutos(const char *horario);
 
 #endif

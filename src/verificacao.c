@@ -73,3 +73,9 @@ int VerificarHora(const char* hora) {
     return 1;
 }
 
+//função para converter hora em minutos
+int converteHoraParaMinutos(const char *horario) {
+    int horas, minutos;
+    sscanf(horario, "%d:%d", &horas, &minutos);
+    return horas * 60 + minutos;  // Retorna o total de minutos desde 00:00
+}
