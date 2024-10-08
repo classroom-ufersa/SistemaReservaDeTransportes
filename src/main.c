@@ -51,11 +51,13 @@ int main(void){
         }
 
         case 3:
+            limpaTela();
             listarReservas(reserva);
             break;
 
         case 4:
         {
+            limpaTela();
             char nomeCliente[50];
             printf("Digite o nome do cliente para buscar a reserva: ");
             scanf(" %[^\n]", nomeCliente);

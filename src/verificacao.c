@@ -79,3 +79,10 @@ int converteHoraParaMinutos(const char *horario) {
     sscanf(horario, "%d:%d", &horas, &minutos);
     return horas * 60 + minutos;  // Retorna o total de minutos desde 00:00
 }
+
+//função para transformar a primeira letra em maiuscula
+void converterParaMaiuscula(char* str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = toupper(str[i]);
+    }
+}

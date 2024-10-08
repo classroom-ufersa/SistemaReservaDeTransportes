@@ -19,4 +19,7 @@ int VerificarHora(const char* hora);
 //função para converter horas para minutos
 int converteHoraParaMinutos(const char *horario);
 
+//função para converter para a primeira letra para maiuscula
+void converterParaMaiuscula(char* str);
+
 #endif

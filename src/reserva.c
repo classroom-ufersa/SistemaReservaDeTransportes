@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../includes/reserva.h"
 #include "../includes/verificacao.h"
 
@@ -76,6 +77,9 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
                 printf("\nERROR! O nome so deve conter letras. Digite novamente!\n");
              }
             }while(!VerificarSeSoTemLetras(nomeCliente));
+
+            converterParaMaiuscula(nomeCliente);
+
             do{
             printf("Data (dd/mm/aaaa): \n");
             scanf(" %[^\n]", data);
@@ -205,15 +209,25 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     Reserva *anterior = NULL;
     int reservaEncontrada = 0;
 
+    char nomeClienteMaiusculo[50];
+    strcpy(nomeClienteMaiusculo, nomeCliente);
+    converterParaMaiuscula(nomeClienteMaiusculo);
+
     // Laço para percorrer a lista para encontrar a reserva desejada
     while (atual != NULL) {
-        if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
+
+        char nomeAtualMaiusculo[50];
+        strcpy(nomeAtualMaiusculo, atual->nomeCliente);
+        converterParaMaiuscula(nomeAtualMaiusculo);
+
+        if (strcmp(nomeAtualMaiusculo, nomeClienteMaiusculo) == 0) {
             // Verifica se a reserva foi encontrada
             if (anterior == NULL) {
                 lista->inicio = atual->prox; // Se for o primeiro nó
             } else {
                 anterior->prox = atual->prox; // Remove o nó atual
             }
+
 
             // Atualiza o veículo associado como disponível
             if (atual->veiculoAssociado != NULL) {
@@ -347,12 +361,22 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
     }
     fclose(arquivo);
 
-    
+    //converter a primeira letra para maiusculo
+     char nomeClienteMaiusculo[50];
+    strcpy(nomeClienteMaiusculo, nomeCliente);
+    converterParaMaiuscula(nomeClienteMaiusculo);
+
     Reserva* atual = lista->inicio;
     //pecorre a lista de reserva do inicio
     while (atual != NULL) {
+        //converte o nome atual para maiuscula
+        char nomeSalvoMaisuculo[50];
+        strcpy(nomeSalvoMaisuculo, atual->nomeCliente);
+        converterParaMaiuscula(nomeSalvoMaisuculo);
+
+        
         //comparar o nome do cliente 
-        if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
+        if (strcmp(nomeSalvoMaisuculo, nomeClienteMaiusculo) == 0) {
             printf("Reserva encontrada:\n");
             printf("Nome do Cliente: %s\n", atual->nomeCliente);
             printf("Data da reserva: %s\n", atual->data);
