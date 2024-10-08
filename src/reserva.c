@@ -418,7 +418,7 @@ void salvarDepoisDeEditado(ListaReserva * lista){
     Reserva * atual = lista->inicio;
     
     while (atual != NULL) {
-        //grando os dados no arquivo 
+        //gravando os dados no arquivo 
         fprintf(arquivo, "~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~\nNome do Cliente: %s\nData: %s\nHorario de inicio: %s\nHorario de termino: %s\nDestino: %s\n", 
                 atual->nomeCliente, 
                 atual->data, 
