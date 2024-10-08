@@ -264,13 +264,13 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     int ignorar_reserva = 0;
 
     while (fgets(linha, sizeof(linha), arquivoOriginal)) {
-    
+       // vai verificar se a linha é o início de uma nova reserva
     if (strncmp(linha, "~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~", 35) == 0) {
         char nomeLinha[256];
         
         fgets(nomeLinha, sizeof(nomeLinha), arquivoOriginal);
         
-        
+        // Verifica se o nome do cliente da é o nome da reserva a ser excluída
         if (strstr(nomeLinha, nomeCliente) != NULL) {
             ignorar_reserva = 1; 
         } else {
@@ -280,6 +280,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
         }
     } else if (ignorar_reserva) {
         
+        //Verifica se a linha marca o final da reserva
         if (strncmp(linha, "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", 37) == 0) {
             ignorar_reserva = 0; 
         }
