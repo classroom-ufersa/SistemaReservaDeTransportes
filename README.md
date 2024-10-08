@@ -77,7 +77,7 @@
           </a>
         </td>
     </table>
-   <span style="font-weight: bold;">Um agradecimento especial a todas as pessoas que contribuíram para este projeto.</span>
+   <span style="font-weight: bold;">Um agradecimento especial a todas as pessoas que ajudaram neste projeto.</span>
   </div>
 </div>
 
