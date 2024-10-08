@@ -251,6 +251,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
         return;
     }
 
+    // abre o arquivo de reservas para leitura e cria um arquivo temporário para escrita
     FILE *arquivoOriginal = fopen("../data/reservas.txt", "r");
     FILE *arquivotemp = fopen("../data/reservas_temp.txt", "w"); 
 
