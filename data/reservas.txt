@@ -1,0 +1,8 @@
+~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
+Nome do cliente: andrei
+Data: 12/22/2222
+Hora de inicio: 12:30
+Hora de termino: 13:30
+Destino: agua nova
+Veiculo reservado: 1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

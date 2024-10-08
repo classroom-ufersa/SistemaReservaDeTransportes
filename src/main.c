@@ -26,7 +26,7 @@ int main(void){
         scanf("%s", opcao);
         if (!VerificarSeSoTemNumero(opcao))
         {
-            printf("apenas numeros!");
+            printf("Opcao invalida, digite uma das disponiveis!");
             opcaoint = 10;
         }
         else
@@ -85,7 +85,7 @@ int main(void){
             break;
 
         default:
-            printf("Valor Invalido\n");
+            printf("\n");
             break;
         }
 
