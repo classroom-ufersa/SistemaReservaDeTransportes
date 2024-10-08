@@ -53,7 +53,7 @@
   No terminal use este comando:
 
   ```c
-  gcc main.c -o main && ./main
+  gcc main.c reserva.c verificacao.c -o programa
 ```
 
   <h2 id="colab" align="center" style="font-weight: bold; font-size: 2rem">Colaboradores</h2>
