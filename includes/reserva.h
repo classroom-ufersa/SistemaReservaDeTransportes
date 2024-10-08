@@ -41,6 +41,7 @@ void listarReservas(ListaReserva* lista);
 
 // função para buscar uma reserva por nome do cliente
 void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente);
+
 // função para salvar as informações no arquivo depois de editar 
 void salvarDepoisDeEditado(ListaReserva * lista);
 

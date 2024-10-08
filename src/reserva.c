@@ -317,26 +317,31 @@ void listarReservas(ListaReserva* lista) {
 }
 
 void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
+    // abrir arquivo, modo leitura 
     FILE *arquivo = fopen("../data/reservas.txt", "r");
+    //verificar se o arquivo foi aberto com sucesso 
     if (arquivo == NULL){
         printf("Erro ao abrir o arquivo!\n");
         exit(1);
     }
-
+    //para um novo nó da lista
     Reserva * novaReserva;
     int encontrado = 0; 
 
-    
+    //loop até chegar ao final do arquivo
     while (!feof(arquivo)) {
+        //alocar espaço a cada linha 
         novaReserva = (Reserva*) malloc(sizeof(Reserva));
+        //fazendo a leitura do arquivo 
         fscanf(arquivo, "%s %s %s %s %s", 
             novaReserva->nomeCliente, 
             novaReserva->data, 
             novaReserva->horarioInicio, 
             novaReserva->horarioTermino, 
             novaReserva->destino);
-
+        //inciado com null pois ainda não tem informação de veiculos 
         novaReserva->veiculoAssociado = NULL; 
+        //inseri a nova reserva no inicio da lista 
         novaReserva->prox = lista->inicio;
         lista->inicio = novaReserva;
     }
@@ -344,8 +349,9 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
 
     
     Reserva* atual = lista->inicio;
+    //pecorre a lista de reserva do inicio
     while (atual != NULL) {
-        
+        //comparar o nome do cliente 
         if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
             printf("Reserva encontrada:\n");
             printf("Nome do Cliente: %s\n", atual->nomeCliente);
@@ -353,7 +359,7 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
             printf("Horario de inicio: %s\n", atual->horarioInicio);
             printf("Horario de termino: %s\n", atual->horarioTermino);
             printf("Destino: %s\n", atual->destino);
-
+            //informção do veiculos associados
             if (atual->veiculoAssociado != NULL) {
                 printf("Veiculo associado: %s (Codigo: %d)\n", 
                     tipoVeiculoParaString(atual->veiculoAssociado->tipo), 
@@ -365,6 +371,7 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
             encontrado = 1;
             break; 
         }
+        //movendo para o proximo reserva da lista 
         atual = atual->prox;
     }
 
@@ -373,15 +380,17 @@ void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
     }
 }
 void salvarDepoisDeEditado(ListaReserva * lista){
+    //modo escrita
     FILE *arquivo = fopen("../data/reservas.txt", "w");
     if(arquivo == NULL){
         printf("Erro ao abrir arquivo!\n");
         exit(1);
     }
-
+    //percorre cada elemento da lista
     Reserva * atual = lista->inicio;
-
+    
     while (atual != NULL) {
+        //grando os dados no arquivo 
         fprintf(arquivo, "~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~\nNome do Cliente: %s\nData: %s\nHorario de inicio: %s\nHorario de termino: %s\nDestino: %s\n", 
                 atual->nomeCliente, 
                 atual->data, 
@@ -396,7 +405,7 @@ void salvarDepoisDeEditado(ListaReserva * lista){
         } else {
             fprintf(arquivo, "Veículo: Nenhum associado\n");
         }
-
+        //mover ponterio para proximo nó da lista
         atual = atual->prox;
     }
 
@@ -498,7 +507,7 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
             printf("os Dados da reserva foram atualizados!\n");
             return;
         }
-
+        //mover ponteiro para proximo nó da lista 
         atual = atual->prox;
     }
 
@@ -506,6 +515,7 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nome
 }
 
 void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
+    //aux para perorrer a lista 
     Veiculo* atual = listaVeiculos;
 
     printf("---- Veiculos Disponíveis ----\n");
@@ -517,6 +527,7 @@ void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
             printf("Motorista: %s\n", atual->motorista);
             printf("-----------------------------\n");
         }
+        //proximo nó da lista
         atual = atual->prox;
     }
 
