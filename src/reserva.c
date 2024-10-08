@@ -49,7 +49,7 @@ void inicializaVeiculos(Veiculo** listaVeiculos) {
     fclose(arquivo);
 }
 
-Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* motorista) {
+Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, char* motorista) {
     Veiculo* novoVeiculo = (Veiculo*) malloc(sizeof(Veiculo));
         novoVeiculo->codigo = codigo;
         novoVeiculo->tipo = tipo;
@@ -205,7 +205,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
     printf("\nReserva adicionada com sucesso!\n");
 }
 
-void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
+void excluirReserva(ListaReserva* lista, char* nomeCliente) {
     Reserva *atual = lista->inicio;
     Reserva *anterior = NULL;
     int reservaEncontrada = 0;
@@ -303,7 +303,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
 }
 
 // converter o tipo de veículo escolhido para string
-const char* tipoVeiculoParaString(TipoVeiculo tipo) {
+char* tipoVeiculoParaString(TipoVeiculo tipo) {
     switch (tipo) {
         case ONIBUS: return "Onibus";
         case VAN: return "Van";
@@ -334,7 +334,7 @@ void listarReservas(ListaReserva* lista) {
     fclose(arquivo);
 }
 
-void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente) {
+void buscarReservaPorCliente(ListaReserva* lista, char* nomeCliente) {
     // abrir arquivo, modo leitura 
     FILE *arquivo = fopen("../data/reservas.txt", "r");
     //verificar se o arquivo foi aberto com sucesso 
@@ -439,7 +439,7 @@ void salvarDepoisDeEditado(ListaReserva * lista){
 
     fclose(arquivo); 
 }
-void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nomeCliente) {
+void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, char* nomeCliente) {
     Reserva* atual = lista->inicio;
 
     while (atual != NULL) {

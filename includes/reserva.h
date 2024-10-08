@@ -25,7 +25,7 @@ void inicializaListaReserva(ListaReserva* lista);
 void inicializaVeiculos(Veiculo** listaVeiculos);
 
 // função para criar um novo veículo
-Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, const char* motorista);
+Veiculo* criaVeiculo(int codigo, TipoVeiculo tipo, int capacidade, char* motorista);
 
 //função para adicionar um veiculo
 void adicionarVeiculo(Veiculo** listaVeiculos, Veiculo* novoVeiculo);
@@ -34,19 +34,19 @@ void adicionarVeiculo(Veiculo** listaVeiculos, Veiculo* novoVeiculo);
 void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos);
 
 //função para remover uma reserva existente
-void excluirReserva(ListaReserva* lista, const char* nomeCliente);
+void excluirReserva(ListaReserva* lista,  char* nomeCliente);
 
 // função para listar todas as reservas
 void listarReservas(ListaReserva* lista);
 
 // função para buscar uma reserva por nome do cliente
-void buscarReservaPorCliente(ListaReserva* lista, const char* nomeCliente);
+void buscarReservaPorCliente(ListaReserva* lista,  char* nomeCliente);
 
 // função para salvar as informações no arquivo depois de editar 
 void salvarDepoisDeEditado(ListaReserva * lista);
 
 // função para editar os dados da reserva escolhida
-void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, const char* nomeCliente);
+void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos,  char* nomeCliente);
 
 // função para consultar os veículos que estão disponíveis
 void consultarVeiculosDisponiveis(Veiculo* listaVeiculos);
