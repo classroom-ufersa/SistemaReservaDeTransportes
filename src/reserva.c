@@ -87,7 +87,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
                 printf("Horario de inicio (hh:mm): ");
                 scanf(" %[^\n]", horarioInicio);
                 if (!VerificarHora(horarioInicio)) {
-                printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+                printf("\nHorario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
                 }
                 } while (!VerificarHora(horarioInicio));
 
@@ -97,12 +97,12 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
                 printf("Horario de termino (hh:mm): ");
                 scanf(" %[^\n]", horarioTermino);
                 if (!VerificarHora(horarioTermino)) {
-                printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
+                printf("\nHorario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
                 } else {
                 minutosInicio = converteHoraParaMinutos(horarioInicio);
                 minutosTermino = converteHoraParaMinutos(horarioTermino);
                 if (minutosTermino <= minutosInicio) {
-                printf("Erro! O horario de termino deve ser maior que o horario de inicio. Tente novamente.\n");
+                printf("\nErro! O horario de termino deve ser maior que o horario de inicio. Tente novamente.\n");
                 }
             }
             } while (!VerificarHora(horarioTermino) || minutosTermino <= minutosInicio);
@@ -111,7 +111,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
             printf("Destino: \n");
             scanf(" %[^\n]", destino);
             if(!VerificarSeSoTemLetras(destino)){
-                printf("O destino so deve conter letras!\n");
+                printf("\nO destino so deve conter letras!\n");
             }
             }while(!VerificarSeSoTemLetras(destino));
  
@@ -399,11 +399,11 @@ void salvarDepoisDeEditado(ListaReserva * lista){
                 atual->destino);
 
         if (atual->veiculoAssociado != NULL) {
-            fprintf(arquivo, "Veículo: %u (Código: %d)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", 
+            fprintf(arquivo, "Veiculo: %u (Codigo: %d)\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", 
                     atual->veiculoAssociado->tipo, 
                     atual->veiculoAssociado->codigo);
         } else {
-            fprintf(arquivo, "Veículo: Nenhum associado\n");
+            fprintf(arquivo, "Veiculo: Nenhum associado\n");
         }
         //mover ponterio para proximo nó da lista
         atual = atual->prox;
@@ -518,14 +518,14 @@ void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
     //aux para perorrer a lista 
     Veiculo* atual = listaVeiculos;
 
-    printf("---- Veiculos Disponíveis ----\n");
+    printf("~~~~ Veiculos Disponiveis ~~~~\n");
     while (atual != NULL) {
         if (atual->disponibilidade == 1) {
             printf("Codigo do Veiculo: %d\n", atual->codigo);
             printf("Tipo: %s\n", tipoVeiculoParaString(atual->tipo));
             printf("Capacidade: %d\n", atual->capacidade);
             printf("Motorista: %s\n", atual->motorista);
-            printf("-----------------------------\n");
+            printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         }
         //proximo nó da lista
         atual = atual->prox;
