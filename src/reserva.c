@@ -149,6 +149,7 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
         }
 
         Veiculo* veiculoAtual = *listaVeiculos;
+        //percorre para ver se ha veiculo do tipo escolhido
         while (veiculoAtual != NULL) {
             if (veiculoAtual->tipo == tipoVeiculo && veiculoAtual->disponibilidade == 1) {
                 veiculoEscolhido = veiculoAtual; 
