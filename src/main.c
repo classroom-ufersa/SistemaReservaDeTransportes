@@ -5,6 +5,10 @@
 
 int main(void){
     ListaReserva *reserva = (ListaReserva*) malloc(sizeof(ListaReserva*));
+    if(reserva == NULL){
+        printf("Erro ao alocar memoria!\n");
+        exit(1);
+    }
     Veiculo * veiculo =  NULL;
     inicializaListaReserva(reserva); 
     inicializaVeiculos(&veiculo);
