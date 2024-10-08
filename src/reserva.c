@@ -213,7 +213,7 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
     strcpy(nomeClienteMaiusculo, nomeCliente);
     converterParaMaiuscula(nomeClienteMaiusculo);
 
-    // Laço para percorrer a lista para encontrar a reserva desejada
+    // laço que vai percorrer a lista para encontrar a reserva desejada
     while (atual != NULL) {
 
         char nomeAtualMaiusculo[50];
@@ -221,26 +221,26 @@ void excluirReserva(ListaReserva* lista, const char* nomeCliente) {
         converterParaMaiuscula(nomeAtualMaiusculo);
 
         if (strcmp(nomeAtualMaiusculo, nomeClienteMaiusculo) == 0) {
-            // Verifica se a reserva foi encontrada
+            // verifica se a reserva foi encontrada
             if (anterior == NULL) {
-                lista->inicio = atual->prox; // Se for o primeiro nó
+                lista->inicio = atual->prox; // se for o primeiro nó
             } else {
-                anterior->prox = atual->prox; // Remove o nó atual
+                anterior->prox = atual->prox; // remove o nó atual
             }
 
 
-            // Atualiza o veículo associado como disponível
+            // atualiza o veiculo associado como disponível
             if (atual->veiculoAssociado != NULL) {
                 atual->veiculoAssociado->disponibilidade = 1;
             }
 
-            // Libera a memória que foi alocada para a reserva
+            // libera a memoria alocada para a reserva
             free(atual);
             reservaEncontrada = 1;
-            break; // Sai do loop após a exclusão
+            break; 
         }
 
-        // Avança para o próximo nó
+        // avança para o próximo nó
         anterior = atual;
         atual = atual->prox;
     }
