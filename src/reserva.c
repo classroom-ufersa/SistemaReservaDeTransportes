@@ -145,11 +145,11 @@ void adicionarReserva(ListaReserva* lista, Veiculo** listaVeiculos) {
                 break;
             default:
                 printf("Codigo invalido!\n");
-                continue;
+                continue; //fica em loop se a escolha for invalida
         }
 
         Veiculo* veiculoAtual = *listaVeiculos;
-        //percorre para ver se ha veiculo do tipo escolhido
+        //percorre para ver se ha veiculo do tipo escolhido disponivel
         while (veiculoAtual != NULL) {
             if (veiculoAtual->tipo == tipoVeiculo && veiculoAtual->disponibilidade == 1) {
                 veiculoEscolhido = veiculoAtual; 
