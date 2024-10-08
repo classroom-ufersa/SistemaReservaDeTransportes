@@ -562,6 +562,7 @@ void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
 void consultarQuantitativoReservas(ListaReserva* lista) {
     int totalReservas = 0;
     int onibus = 0, van = 0, pickup = 0, carroConvencional = 0;
+    //aux para percorre a lista do incio
     Reserva* atual = lista->inicio;
 
     while (atual != NULL) {
@@ -582,7 +583,7 @@ void consultarQuantitativoReservas(ListaReserva* lista) {
                 break;
             }
         }
-
+        //prox nó da lista
         atual = atual->prox;
     }
     printf("~~~~ Quantitativo de Reservas ~~~~\n");
@@ -596,11 +597,14 @@ void consultarQuantitativoReservas(ListaReserva* lista) {
 
 void liberarListaReservas(ListaReserva* lista) {
     Reserva* atual = lista->inicio;
+    //ponteiro aux para armazenar as referencias ao proximo nó da lista, enquanto o altual está sendo liberado
     Reserva* proximo;
     
     while (atual != NULL) {
+        //armazena o ponteiro para o prox nó da lista
         proximo = atual->prox;
         free(atual);
+        //proximo nó
         atual = proximo;
     }
 }
