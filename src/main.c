@@ -67,6 +67,7 @@ int main(void){
 
         case 5:
         {
+            limpaTela();
             char nomeCliente[50];
             printf("Digite o nome do cliente da reserva que deseja editar: ");
             scanf(" %[^\n]", nomeCliente);
@@ -75,10 +76,12 @@ int main(void){
         }
 
         case 6:
+            limpaTela();
             consultarVeiculosDisponiveis(veiculo);
             break;
 
         case 7:
+            limpaTela();
             consultarQuantitativoReservas(reserva);
             break;
 
