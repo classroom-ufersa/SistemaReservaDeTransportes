@@ -322,6 +322,7 @@ void listarReservas(ListaReserva* lista) {
 
     char linha[256];
     int linhasLidas = 0;
+    //le o arquivo linha por linha até chegar ao fim
     while(fgets(linha, sizeof(linha), arquivo)){
         printf("%s", linha);
         linhasLidas++;
