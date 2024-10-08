@@ -11,15 +11,13 @@ void limpaTela() {
     #endif
 }
 
-int VerificarSeSoTemLetras(const char *nome){
-    while (*nome)
-    {
-        if(!isalpha(*nome) && *nome !=  ' '){
-            return 0;
+int VerificarSeSoTemLetras(const char *str) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (!((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z') || str[i] == ' ')) {
+            return 0; // se nao é letra ou espaço
         }
-        nome++;
     }
-    return 1;
+    return 1; // correto
 }
 
 int VerificarSeSoTemNumero(char entrada[]){
