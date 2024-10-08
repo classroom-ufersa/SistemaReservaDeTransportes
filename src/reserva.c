@@ -318,13 +318,13 @@ void listarReservas(ListaReserva* lista) {
     }
 
     char linha[256];
-    int linhasLisdas = 0;
+    int linhasLidas = 0;
     while(fgets(linha, sizeof(linha), arquivo)){
         printf("%s", linha);
-        linhasLisdas++;
+        linhasLidas++;
     }
 
-    if(linhasLisdas == 0){
+    if(linhasLidas == 0){
         printf("Lista esta vazia!\n");
     }
     fclose(arquivo);
