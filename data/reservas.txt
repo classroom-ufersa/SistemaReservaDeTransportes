@@ -1,8 +1,0 @@
-~~~~~~~~~~~~~~Cliente~~~~~~~~~~~~~~
-Nome do Cliente: alisson
-Data: 11/11/1111
-Horario de inicio: 10:10
-Horario de termino: 20:20
-Destino: jbe
-Veículo: 0 (Código: 1)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
