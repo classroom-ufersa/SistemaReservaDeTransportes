@@ -441,11 +441,20 @@ void salvarDepoisDeEditado(ListaReserva * lista){
 }
 void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, char* nomeCliente) {
     Reserva* atual = lista->inicio;
+    
+    // Converte o nome do cliente para maiúsculas
+    char nomeClienteMaiusculo[50];
+    strcpy(nomeClienteMaiusculo, nomeCliente);
+    converterParaMaiuscula(nomeClienteMaiusculo);
 
     while (atual != NULL) {
-        if (strcmp(atual->nomeCliente, nomeCliente) == 0) {
+        char nomeAtualMaiusculo[50];
+        strcpy(nomeAtualMaiusculo, atual->nomeCliente);
+        converterParaMaiuscula(nomeAtualMaiusculo);
+
+        if (strcmp(nomeAtualMaiusculo, nomeClienteMaiusculo) == 0) {
             int opcao;
-            printf("a Reserva foi encontrada, o que deseja editar?\n");
+            printf("A reserva foi encontrada. O que deseja editar?\n");
             printf("1. Nome do Cliente\n");
             printf("2. Data\n");
             printf("3. Horario de inicio\n");
@@ -457,51 +466,57 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, char* nomeClient
 
             switch (opcao) {
                 case 1:
-                    do{ 
-                    printf("Novo nome do Cliente: ");
-                    scanf(" %[^\n]", atual->nomeCliente);
-                    if(!VerificarSeSoTemLetras(atual->nomeCliente)){
-                        printf("Nome invalido. Digite novamente!\n");
-                    }
-                    }while(!VerificarSeSoTemLetras(atual->nomeCliente));
+                    do { 
+                        printf("Novo nome do Cliente: ");
+                        scanf(" %[^\n]", atual->nomeCliente);
+                        if (!VerificarSeSoTemLetras(atual->nomeCliente)) {
+                            printf("Nome invalido. Digite novamente!\n");
+                        }
+                    } while (!VerificarSeSoTemLetras(atual->nomeCliente));
+                    // Converte o novo nome do cliente para maiúsculas
+                    converterParaMaiuscula(atual->nomeCliente);
                     break;
+
                 case 2:
-                    do{
-                    printf("Nova data (dd/mm/aaaa): ");
-                    scanf(" %[^\n]",atual->data);
+                    do {
+                        printf("Nova data (dd/mm/aaaa): ");
+                        scanf(" %[^\n]", atual->data);
                         if (!VerificarData(atual->data)) {
                             printf("Data invalida! Deve estar no formato dd/mm/aaaa. Digite novamente.\n");
                         }
                     } while (!VerificarData(atual->data));
                     break;
+
                 case 3:
                     do {
-                    printf("Novo horario de inicio (hh:mm): ");
-                    scanf(" %[^\n]",atual->horarioInicio);
+                        printf("Novo horario de inicio (hh:mm): ");
+                        scanf(" %[^\n]", atual->horarioInicio);
                         if (!VerificarHora(atual->horarioInicio)) {
                             printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
                         }
                     } while (!VerificarHora(atual->horarioInicio));
                     break;
+
                 case 4:
                     do {
-                    printf("Horario de termino (hh:mm): ");
-                    scanf(" %[^\n]",atual->horarioTermino);
+                        printf("Horario de termino (hh:mm): ");
+                        scanf(" %[^\n]", atual->horarioTermino);
                         if (!VerificarHora(atual->horarioTermino)) {
                             printf("Horario invalido! Deve estar no formato hh:mm. Digite novamente.\n");
                         }
                     } while (!VerificarHora(atual->horarioTermino));
                     break;
+
                 case 5:
-                    do{ 
-                    printf("Novo destino: ");
-                    scanf(" %[^\n]", atual->destino);
-                    if (!VerificarSeSoTemLetras(atual->destino)){
-                        printf("Apenas letras!\n");
-                    }
-                    
-                    }while(!VerificarSeSoTemLetras(atual->destino));
+                    do { 
+                        printf("Novo destino: ");
+                        scanf(" %[^\n]", atual->destino);
+                        if (!VerificarSeSoTemLetras(atual->destino)) {
+                            printf("Apenas letras!\n");
+                        }
+                    } while (!VerificarSeSoTemLetras(atual->destino));
                     break;
+
                 case 6: {
                     int codigoVeiculo;
                     printf("Codigo do novo veiculo: ");
@@ -524,23 +539,26 @@ void editarReserva(ListaReserva* lista, Veiculo* listaVeiculos, char* nomeClient
                         novoVeiculo->disponibilidade = 0;
                         printf("Veiculo atualizado com sucesso.\n");
                     } else {
-                        printf("o Veiculo nao esta disponivel.\n");
+                        printf("O veiculo nao esta disponivel.\n");
                     }
                     break;
                 }
+
                 default:
                     printf("Opcao invalida!\n");
             }
+
             salvarDepoisDeEditado(lista);
-            printf("os Dados da reserva foram atualizados!\n");
+            printf("Os dados da reserva foram atualizados!\n");
             return;
         }
-        //mover ponteiro para proximo nó da lista 
+        // Move para o próximo nó da lista
         atual = atual->prox;
     }
 
-    printf("a Reserva nao foi encontrada para o cliente: %s\n", nomeCliente);
+    printf("A reserva nao foi encontrada para o cliente: %s\n", nomeCliente);
 }
+
 
 void consultarVeiculosDisponiveis(Veiculo* listaVeiculos) {
     //aux para perorrer a lista 
